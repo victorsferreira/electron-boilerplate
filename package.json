@@ -1,7 +1,7 @@
 {
   "name": "electron-boilerplate",
   "version": "1.0.0",
-  "homepage":"https://github.com/username/project",
+  "homepage": "https://github.com/username/project",
   "author": {
     "name": "Author name",
     "email": "author@email.com"
@@ -9,15 +9,19 @@
   "main": "src/main.js",
   "license": "MIT",
   "dependencies": {
+    "moment": "^2.24.0"
   },
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "DEBUG=electron-builder electron-builder"
   },
   "build": {
     "appId": "yourappid",
     "linux": {
+      "category": "Training",
+      "description": "Some application",
+      "icon": "build/512x512.png",
       "target": [
         "AppImage",
         "deb"
@@ -25,7 +29,7 @@
     }
   },
   "devDependencies": {
-    "electron-builder": "^21.1.5",
-    "electron": "^5.0.8"
+    "electron": "^5.0.8",
+    "electron-builder": "^21.1.5"
   }
 }
