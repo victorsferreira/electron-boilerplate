@@ -1,6 +1,12 @@
-const { app, BrowserWindow } = require('electron');
+const { 
+  app, BrowserWindow, 
+  Tray, Menu 
+} = require('electron');
 
 let win;
+let tray = null;
+
+global.someGlobalVariable = "Vendor Team";
 
 function createWindow () {
   win = new BrowserWindow({
@@ -13,11 +19,21 @@ function createWindow () {
 
   win.loadFile('./src/index.html');
 
-  win.webContents.openDevTools();
-
   win.on('closed', () => {
     win = null
   });
+
+  win.webContents.openDevTools();
+
+  tray = new Tray('./build/icons/512x512.png');
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Item 1', type: 'radio', click: () => { 
+        console.log("Item");
+      }
+    }
+  ]);
+  tray.setContextMenu(contextMenu);
 }
 
 app.on('ready', createWindow);
